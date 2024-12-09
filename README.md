@@ -55,3 +55,42 @@ A estrutura de pastas do projeto é organizada da seguinte forma:
 * **styles**: Contém arquivos de estilização global e configurações de estilos (separados do Tailwind, caso necessário).
 * **services**: Centraliza a lógica de comunicação com APIs externas, facilitando a manutenção e testes.
 * **utils**: Inclui funções auxiliares para manipulação e formatação de dados, como truncar textos ou criar links.
+
+## Executando com Docker
+
+Este projeto também pode ser executado utilizando o Docker. As instruções abaixo explicam como criar a imagem Docker e executar o contêiner.
+
+#### Dockerfile
+
+O arquivo `Dockerfile` já está configurado e utiliza as seguintes etapas:
+
+1. **Etapa de Build**:
+   - Utiliza uma imagem base `ubuntu:latest`.
+   - Instala o Java 17 e o Maven.
+   - Realiza o build do projeto utilizando o Maven.
+
+2. **Etapa de Execução**:
+   - Utiliza uma imagem base `openjdk:17-slim`.
+   - Expõe a porta 8080.
+   - Copia o JAR gerado na etapa de build e o configura para execução.
+
+#### Construindo a Imagem Docker
+
+Antes de executar o contêiner, é necessário criar a imagem Docker a partir do `Dockerfile`. Execute o comando abaixo na raiz do projeto:
+
+```bash
+docker build -t github-gateway-back .
+```
+
+#### Inicializando o Contêiner Docker
+
+Após a imagem Docker ser construída, o contêiner pode ser iniciado. Lembre-se de passar o token do GitHub como uma variável de ambiente para que a aplicação funcione corretamente.
+
+Execute o seguinte comando para iniciar o contêiner:
+
+```bash
+docker run -p 8080:8080 -e GITHUB_TOKEN=seu-token-do-github github-gateway-back
+```
+
+Feito com 💚 por [**Wladimir Silva**](https://github.com/wladi-silva)
+
