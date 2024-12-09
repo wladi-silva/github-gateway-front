@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface ListItem {
-    language: string;
-    tittle: string;
+    language: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    title: string;
     description: string;
 }
 
@@ -30,15 +30,11 @@ export default function List({ list }: ListProps) {
                         className="text-slate-800 flex w-full items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
                     >
                         <div className="mr-4 grid place-items-center">
-                            <img
-                                alt={item.tittle}
-                                src={item.language}
-                                className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center"
-                            />
+                            <item.language />
                         </div>
                         <div>
-                            <h6 className="text-slate-800 font-medium text-left text-lg md:text-xl">
-                                {item.tittle}
+                            <h6 className="text-slate-800 font-semibold text-left md:text-base">
+                                {item.title}
                             </h6>
                             <p className="text-slate-500 text-sm text-left md:text-base">
                                 {truncateDescription(item.description, MAX_DESCRIPTION_LENGTH)}
