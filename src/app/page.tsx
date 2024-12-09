@@ -9,6 +9,7 @@ interface ListItem {
     language: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
     description: string;
+    login: string;
 }
 
 export default function Home() {
@@ -34,12 +35,12 @@ export default function Home() {
                 return;
             }
 
-            setUser({ source: userResponse.avatarUrl, name: userResponse.name, login: userResponse.login });
+            setUser({ source: userResponse.avatar_url, name: userResponse.name, login: userResponse.login });
 
-            if (repositoriesResponse.length === 0) {
-                setError('Este usuário não possui repositórios.');
+            if (repositoriesResponse.length > 0) {
+                setItems(repositoriesResponse.map(repository => ({ ...repository, login: userResponse.login })));
             } else {
-                setItems(repositoriesResponse);
+                setError('Este usuário não possui repositórios.');
             }
 
         } catch (error) {
@@ -58,7 +59,7 @@ export default function Home() {
             <Card
                 title="GitHub Gateway"
                 description="Descubra usuários e repositórios com facilidade. Explore projetos, contribuições e conecte-se com o mundo do código."
-                placeholder="wladi-silva"
+                placeholder="facebook"
                 onSearch={onSearch}
             />
             <div className="relative min-h-80 w-full flex flex-col items-center bg-white p-2 shadow-sm border border-slate-200 rounded-lg mt-4">
@@ -72,7 +73,7 @@ export default function Home() {
                 )}
                 {!error && user.name && (
                     <>
-                        <User source={user.source} name={user.name} />
+                        <User source={user.source} name={user.name} login={user.login} />
                         <div className="relative min-h-80 w-full flex flex-col items-center my-6 bg-white p-2">
                             {loading ? (
                                 <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">

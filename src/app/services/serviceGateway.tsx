@@ -4,7 +4,7 @@ import { languageIcons } from '../icons/Icon';
 interface User {
     login: string;
     name: string;
-    avatarUrl: string;
+    avatar_url: string;
 }
 
 interface Repository {
@@ -26,7 +26,6 @@ const serviceGateway = axios.create({
 export const fetchUser = async (username: string): Promise<User | null> => {
     try {
         const response = await serviceGateway.get<User>(`/${username}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         isNotFoundError(error);
