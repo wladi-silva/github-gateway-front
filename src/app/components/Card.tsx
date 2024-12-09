@@ -10,7 +10,7 @@ interface CardProps {
 
 export default function Card({ title, description, placeholder, onSearch }: CardProps) {
     return (
-        <div className="relative min-h-80 w-full flex flex-col justify-center items-center my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-2">
+        <div className="relative min-h-80 w-full flex flex-col justify-center items-center my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-4 sm:p-6 lg:p-8">
             <div className="p-3 text-center">
                 <div className="flex justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
@@ -22,7 +22,7 @@ export default function Card({ title, description, placeholder, onSearch }: Card
                         {title}
                     </h5>
                 </div>
-                <p className="block text-slate-600 leading-normal font-light mb-4 max-w-lg">
+                <p className="block text-slate-600 leading-normal font-light mb-4 max-w-lg text-center">
                     {description}
                 </p>
                 <div className="flex justify-center">
