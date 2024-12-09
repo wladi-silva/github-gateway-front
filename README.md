@@ -65,21 +65,20 @@ Este projeto também pode ser executado utilizando o Docker. As instruções aba
 O arquivo `Dockerfile` já está configurado e utiliza as seguintes etapas:
 
 1. **Etapa de Build**:
-   - Utiliza uma imagem base `ubuntu:latest`.
-   - Instala o Java 17 e o Maven.
-   - Realiza o build do projeto utilizando o Maven.
+   - Utiliza uma imagem base `node:14`.
+   - Define o diretório de trabalho para `/app`.
+   - Copia os arquivos `package.json` e `package-lock.json` e instala as dependências do projeto utilizando o `npm install`.
 
 2. **Etapa de Execução**:
-   - Utiliza uma imagem base `openjdk:17-slim`.
-   - Expõe a porta 8080.
-   - Copia o JAR gerado na etapa de build e o configura para execução.
+   - Expõe a porta 3000.
+   - Executa o comando `npm start` para iniciar a aplicação.
 
 #### Construindo a Imagem Docker
 
 Antes de executar o contêiner, é necessário criar a imagem Docker a partir do `Dockerfile`. Execute o comando abaixo na raiz do projeto:
 
 ```bash
-docker build -t github-gateway-back .
+docker build -t github-gateway-front .
 ```
 
 #### Inicializando o Contêiner Docker
@@ -89,7 +88,7 @@ Após a imagem Docker ser construída, o contêiner pode ser iniciado. Lembre-se
 Execute o seguinte comando para iniciar o contêiner:
 
 ```bash
-docker run -p 8080:8080 -e GITHUB_TOKEN=seu-token-do-github github-gateway-back
+docker run -p 3000:3000 github-gateway-front
 ```
 
 Feito com 💚 por [**Wladimir Silva**](https://github.com/wladi-silva)
