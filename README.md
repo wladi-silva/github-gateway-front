@@ -55,3 +55,41 @@ A estrutura de pastas do projeto é organizada da seguinte forma:
 * **styles**: Contém arquivos de estilização global e configurações de estilos (separados do Tailwind, caso necessário).
 * **services**: Centraliza a lógica de comunicação com APIs externas, facilitando a manutenção e testes.
 * **utils**: Inclui funções auxiliares para manipulação e formatação de dados, como truncar textos ou criar links.
+
+## Executando com Docker
+
+Este projeto também pode ser executado utilizando o Docker. As instruções abaixo explicam como criar a imagem Docker e executar o contêiner.
+
+#### Dockerfile
+
+O arquivo `Dockerfile` já está configurado e utiliza as seguintes etapas:
+
+1. **Etapa de Build**:
+   - Utiliza uma imagem base `node:14`.
+   - Define o diretório de trabalho para `/app`.
+   - Copia os arquivos `package.json` e `package-lock.json` e instala as dependências do projeto utilizando o `npm install`.
+
+2. **Etapa de Execução**:
+   - Expõe a porta 3000.
+   - Executa o comando `npm start` para iniciar a aplicação.
+
+#### Construindo a Imagem Docker
+
+Antes de executar o contêiner, é necessário criar a imagem Docker a partir do `Dockerfile`. Execute o comando abaixo na raiz do projeto:
+
+```bash
+docker build -t github-gateway-front .
+```
+
+#### Inicializando o Contêiner Docker
+
+Após a imagem Docker ser construída, o contêiner pode ser iniciado. Lembre-se de passar o token do GitHub como uma variável de ambiente para que a aplicação funcione corretamente.
+
+Execute o seguinte comando para iniciar o contêiner:
+
+```bash
+docker run -p 3000:3000 github-gateway-front
+```
+
+Feito com 💚 por [**Wladimir Silva**](https://github.com/wladi-silva)
+
