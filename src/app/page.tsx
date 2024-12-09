@@ -6,21 +6,21 @@ import List from './components/List';
 import User from './components/User';
 
 interface ListItem {
-    language: string;
+    language: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
     description: string;
 }
 
 export default function Home() {
     const [items, setItems] = useState<ListItem[]>([]);
-    const [user, setUser] = useState<{ source: string; name: string }>({ source: '', name: '' });
+    const [user, setUser] = useState<{ source: string; name: string; login: string }>({ source: '', name: '', login: '' });
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
     const onSearch = useCallback(async (username: string) => {
         setLoading(true);
         setError('');
-        setUser({ source: '', name: '' });
+        setUser({ source: '', name: '', login: '' });
         setItems([]);
 
         try {
@@ -34,7 +34,7 @@ export default function Home() {
                 return;
             }
 
-            setUser({ source: userResponse.avatar, name: userResponse.login });
+            setUser({ source: userResponse.avatarUrl, name: userResponse.name, login: userResponse.login });
 
             if (repositoriesResponse.length === 0) {
                 setError('Este usuário não possui repositórios.');

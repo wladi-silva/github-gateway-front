@@ -1,19 +1,20 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
+import { languageIcons } from '../icons/Icon';
 
 interface User {
     login: string;
-    url: string;
-    avatar: string;
+    name: string;
+    avatarUrl: string;
 }
 
 interface Repository {
     name: string;
-    url: string;
+    language: string;
     description: string;
 }
 
 interface ListItem {
-    language: string;
+    language: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
     description: string;
 }
@@ -36,10 +37,10 @@ export const fetchUser = async (username: string): Promise<User | null> => {
 export const fetchRepositories = async (username: string): Promise<ListItem[]> => {
     try {
         const response = await serviceGateway.get<Repository[]>(`/${username}/repos`);
-        return response.data.map((repo) => ({
-            language: 'https://path.to/language/icon.png', 
-            title: repo.name,
-            description: repo.description || 'Sem descrição',
+        return response.data.map((repository) => ({
+            language: languageIcons[repository.language] || languageIcons.Default,
+            title: repository.name,
+            description: repository.description || 'Sem descrição',
         }));
     } catch (error) {
         isNotFoundError(error);
