@@ -1,6 +1,18 @@
+"use client";
+import React from 'react';
+import Card from './components/Card';
+
 export default function Home() {
-  return (
-    <div>
-    </div>
-  );
+    const handleSearch = (value: string) => {
+      
+    };
+
+    return (
+        <Card
+            title="GitHub Gateway"
+            description="Descubra usuários e repositórios com facilidade. Explore projetos, contribuições e conecte-se com o mundo do código."
+            placeholder="wladi-silva"
+            onSearch={handleSearch}
+        />
+    );
 }

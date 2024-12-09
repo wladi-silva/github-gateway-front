@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "GitHub Gateway",
+  title: "GitHub Gateway - Encontre usuários do GitHub",
   description: "GitHub Gateway",
 };
 
