@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ListItem {
     language: string;
-    tittle: string;
+    title: string;
     description: string;
 }
 
@@ -31,14 +31,14 @@ export default function List({ list }: ListProps) {
                     >
                         <div className="mr-4 grid place-items-center">
                             <img
-                                alt={item.tittle}
+                                alt={item.title}
                                 src={item.language}
                                 className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center"
                             />
                         </div>
                         <div>
                             <h6 className="text-slate-800 font-medium text-left text-lg md:text-xl">
-                                {item.tittle}
+                                {item.title}
                             </h6>
                             <p className="text-slate-500 text-sm text-left md:text-base">
                                 {truncateDescription(item.description, MAX_DESCRIPTION_LENGTH)}
