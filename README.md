@@ -65,7 +65,7 @@ Este projeto também pode ser executado utilizando o Docker. As instruções aba
 O arquivo `Dockerfile` já está configurado e utiliza as seguintes etapas:
 
 1. **Etapa de Build**:
-   - Utiliza uma imagem base `node:14`.
+   - Utiliza uma imagem base `node:18`.
    - Define o diretório de trabalho para `/app`.
    - Copia os arquivos `package.json` e `package-lock.json` e instala as dependências do projeto utilizando o `npm install`.
 
